@@ -15,33 +15,43 @@
                 $("#animation").css("opacity", "1")
                 $(".wrapper").fadeOut(1000, function(){
                     setTimeout(function(){
-                        $("#animation").css("opacity", "0", function(){
-                            $("#marshmellow").css("opacity", "1");
-                        });
+                        $("#animation").css("opacity", "0"); 	
+                        $( "#animation" ).remove();
+                        prepareFrame();   
                     }, 2000);
                 });
             });
             $("#img2").click(function(){
-                $("body").fadeOut("slow", function(){
-                    window.location.replace("animation.html");
-                    /*setTimeout(function(){
-                        $("#foo").fadeOut("slow", function(){
-                            window.location.replace("marshmellow.html");
-                        });
-                    }, 5000);*/
+                $("#animation").css("opacity", "1")
+                $(".wrapper").fadeOut(1000, function(){
+                    setTimeout(function(){
+                        $("#animation").css("opacity", "0"); 	
+                        prepareFrame("honey-i-washed", "honey-i-washed.html");   
+                    }, 2000);
                 });
             });
             $("#img3").click(function(){
-                $("body").fadeOut("slow", function(){
-                    window.location.replace("animation.html");
-                    /*setTimeout(function(){
-                        $("#foo").fadeOut("slow", function(){
-                            window.location.replace("marshmellow.html");
-                        });
-                    }, 5000);*/
+                $("#animation").css("opacity", "1")
+                $(".wrapper").fadeOut(1000, function(){
+                    setTimeout(function(){
+                        $("#animation").css("opacity", "0"); 	
+                        prepareFrame("marshmellow", "marshmellow.html");   
+                    }, 2000);
                 });
             });
         });
+
+        function prepareFrame(id, src) {
+            var ifrm = document.createElement("iframe");
+            ifrm.setAttribute("id", id);
+            ifrm.setAttribute("src", src);
+            ifrm.style.position = "fixed";
+            ifrm.style.top = "top";
+            ifrm.style.width = "100%";
+            ifrm.style.height = "100%";
+            ifrm.style.opacity = "1";
+            document.body.appendChild(ifrm);
+        }
     </script>
     <style>
         #animation {
@@ -50,7 +60,7 @@
         }
         #marshmellow {
             transition: opacity 1s;
-            pointer-events: all;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -78,7 +88,6 @@
     </div>
 
     <iframe id="animation" style="position: fixed; top: 0; width: 100%; height: 100%; opacity: 0;" src="animation.html"></iframe>
-    <!--<iframe id="marshmellow" style="position: fixed; top: 0; width: 100%; height: 100%; opacity: 0;" src="marshmellow.html"></iframe>-->
 </body>
 </html>
 

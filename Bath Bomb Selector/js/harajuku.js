@@ -4,7 +4,7 @@ var img;
 function setup() {
 	createCanvas(600, 600);
 	
-	loadImage('/images/profile.jpg', function(img2) {
+	loadImage('/images/sweet-shop.jpg', function(img2) {
 	  background(30)
     img = img2
 
