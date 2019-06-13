@@ -48,8 +48,6 @@ function playChime(sound_id) {
 	}
 	
 }
-=======
->>>>>>> e1763ec26bfdbdb8f047be733e88a6a16bba7755
 
 // Moves to a random direction and comes to a stop.
 // Spawns other particles within its lifetime.
@@ -150,12 +148,10 @@ function draw() {
       triangle(p1.pos.x, p1.pos.y, 
                p2.pos.x, p2.pos.y, 
                p3.pos.x, p3.pos.y);
-<<<<<<< HEAD
 	  
 	  _rand = Math.floor(Math.random() * Math.floor(3));
 	  // playChime(_rand)
-=======
->>>>>>> e1763ec26bfdbdb8f047be733e88a6a16bba7755
+	  
     }
   }
   
@@ -164,8 +160,6 @@ function draw() {
   text("Click and drag the mouse\nPress any key to change to fill/stroke", width/2, height-50);
 }
 
-
-<<<<<<< HEAD
 // function mouseDragged() {
   // allParticles.push(new Particle(mouseX, mouseY, maxLevel));
 // }
@@ -273,13 +267,3 @@ setInterval(function() {
 
 	
 }, 100)
-=======
-function mouseDragged() {
-  allParticles.push(new Particle(mouseX, mouseY, maxLevel));
-}
-
-
-function keyPressed() {
-  useFill = ! useFill;
-}
->>>>>>> e1763ec26bfdbdb8f047be733e88a6a16bba7755
