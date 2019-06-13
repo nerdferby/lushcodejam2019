@@ -13,6 +13,9 @@ Inspired by:
 
 Author:
   Jason Labbe
+  
+Modified by:
+  Scott Cummins
 
 Site:
   jasonlabbe3d.com
@@ -26,17 +29,24 @@ var colours = [318, 29];
 var colour = 318;
 
 var chimes = [
-	// new Audio("sounds/chime_bell -6.mp3"),
-	// new Audio("sounds/chime_bell -3.mp3"),
-	// new Audio("sounds/chime_bell 0.mp3"),
-	// new Audio("sounds/chime_bell 3.mp3"),
-	// new Audio("sounds/chime_bell 6.mp3")
-	new Audio("sounds/chime_bell -10.mp3"),
-	new Audio("sounds/chime_bell 0.mp3"),
-	new Audio("sounds/chime_bell 10.mp3")
+	// "sounds/chime_bell -6.mp3",
+	"sounds/chime_bell -3.mp3",
+	"sounds/chime_bell 0.mp3",
+	"sounds/chime_bell 3.mp3",
+	"sounds/chime_bell 6.mp3",
+	// "sounds/chime_bell -10.mp3",
+	// "sounds/chime_bell 0.mp3",
+	"sounds/chime_bell 10.mp3"
 ];
 
 var data = [];
+
+var lastChime = 0; // milliseconds
+var chimeCooldown = 50;
+
+var lastChimeLoop = setInterval(function() {
+	lastChime = lastChime > 0 ? lastChime - chimeCooldown : 0;
+}, chimeCooldown)
 
 function _playSound() {
 	
@@ -46,9 +56,14 @@ function _playSound() {
 }
 
 function playChime(sound_id) {
-	chimes[sound_id].play();
+	
+	if(lastChime == 0) {
+		var audio = new Audio(chimes[sound_id]);
+		audio.play();
+		lastChime = chimeCooldown * 2;
+	}
+	
 }
-
 
 // Moves to a random direction and comes to a stop.
 // Spawns other particles within its lifetime.
