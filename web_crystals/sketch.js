@@ -24,7 +24,6 @@ var useFill = false;
 
 var data = [];
 
-<<<<<<< HEAD
 var lastChime = 0; // milliseconds
 var chimeCooldown = 100;
 
