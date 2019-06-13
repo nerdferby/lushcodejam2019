@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>P5.js Test</title>
+    <title>LUSH Bath Bomb Selector</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="p5.js"></script>
     <script>
         $(document).ready(function(){
+            $("#img1").click(function(){
+                $("#animation").css("opacity", "1")
+                $(".wrapper").fadeOut(1000, function(){
+                    setTimeout(function(){
+                        $("#animation").css("opacity", "0", function(){
+                            $("#marshmellow").css("opacity", "1");
+                        });
+                    }, 2000);
+                });
+            });
+            $("#img2").click(function(){
+                $("body").fadeOut("slow", function(){
+                    window.location.replace("animation.html");
+                    /*setTimeout(function(){
+                        $("#foo").fadeOut("slow", function(){
+                            window.location.replace("marshmellow.html");
+                        });
+                    }, 5000);*/
+                });
+            });
             $("#img3").click(function(){
-                $("#foo").fadeOut("slow", function(){
+                $("body").fadeOut("slow", function(){
                     window.location.replace("animation.html");
                     /*setTimeout(function(){
                         $("#foo").fadeOut("slow", function(){
@@ -22,14 +43,42 @@
             });
         });
     </script>
+    <style>
+        #animation {
+            transition: opacity 1s;
+            pointer-events: none;
+        }
+        #marshmellow {
+            transition: opacity 1s;
+            pointer-events: all;
+        }
+    </style>
 </head>
 <body>
-    <div id="foo" class="container">
+    <div class="wrapper">
+    <div class="jumbotron text-center">
         <h1>LUSH Bath Bomb Selector</h1>
-        <img src="/images/harajuku.jpg" alt="Bath bomb" height="300" width="300" onClick="">
-        <img src="/images/honey-i-washed.jpg" alt="Bath bomb" height="300" width="300">
-        <img src="/images/marshmellow.jpg" alt="Bath bomb" height="300" width="300" id="img3">     
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3>Harajuku Bath Bomb</h3>
+                <img src="/images/harajuku.jpg" alt="Bath bomb" height="300" width="300" id="img1">
+            </div>
+            <div class="col-sm-4">
+                <h3>Honey I Washed Bath Bomb</h3>
+                <img src="/images/honey-i-washed.jpg" alt="Bath bomb" height="300" width="300" id="img2">
+            </div>
+            <div class="col-sm-4">
+                <h3>Marshmellow World Bath Bomb</h3>
+                <img src="/images/marshmellow.jpg" alt="Bath bomb" height="300" width="300" id="img3"> 
+            </div>
+        </div>     
+    </div>
+    </div>
+
+    <iframe id="animation" style="position: fixed; top: 0; width: 100%; height: 100%; opacity: 0;" src="animation.html"></iframe>
+    <!--<iframe id="marshmellow" style="position: fixed; top: 0; width: 100%; height: 100%; opacity: 0;" src="marshmellow.html"></iframe>-->
 </body>
 </html>
 
