@@ -42,7 +42,7 @@ var chimes = [
 var data = [];
 
 var lastChime = 0; // milliseconds
-var chimeCooldown = 50;
+var chimeCooldown = 100;
 
 var lastChimeLoop = setInterval(function() {
 	lastChime = lastChime > 0 ? lastChime - chimeCooldown : 0;
@@ -165,7 +165,7 @@ function draw() {
                p3.pos.x, p3.pos.y);
 	  
 	  _rand = Math.floor(Math.random() * Math.floor(3));
-	  playChime(_rand)
+	  // playChime(_rand)
     }
   }
   
@@ -179,56 +179,95 @@ function draw() {
   // allParticles.push(new Particle(mouseX, mouseY, maxLevel));
 // }
 
-function mouseClicked() {
+// function mouseClicked() {
+	// colour = colours[Math.floor(Math.random() * Math.floor(colours.length))];
+// }
+
+setInterval(function() {
 	colour = colours[Math.floor(Math.random() * Math.floor(colours.length))];
-}
+}, 5000)
 
 /*
  *	Generates the pattern the crystals are formed
 */
 var step = 35; // pixels
-var stepAllowance = 100;
+var stepAllowance = 1000;
 var lastDirection = 0;
 var posX = window.innerWidth / 2;
 var posY = window.innerHeight / 2;
 
+function move(direction) {
+	
+	switch(direction) {
+		case(0):
+			lastDirection = "north";
+			allParticles.push(new Particle(posX, posY += step, maxLevel));
+			console.log("direction " + lastDirection + " posX " + posX + " posY " + posY);
+			break;
+		case(1):
+			lastDirection = "north-east";
+			allParticles.push(new Particle(posX += step, posY += step, maxLevel));
+			console.log("direction " + lastDirection + " posX " + posX + " posY " + posY);
+			break;
+		case(2):
+			lastDirection = "east";
+			allParticles.push(new Particle(posX += step, posY, maxLevel));
+			console.log("direction " + lastDirection + " posX " + posX + " posY " + posY);
+			break;
+		case(3):
+			lastDirection = "south-east";
+			allParticles.push(new Particle(posX += step, posY -= step, maxLevel));
+			console.log("direction " + lastDirection + " posX " + posX + " posY " + posY);
+			break;
+		case(4):
+			lastDirection = "south";
+			allParticles.push(new Particle(posX, posY -= step, maxLevel));
+			console.log("direction " + lastDirection + " posX " + posX + " posY " + posY);
+			break;
+		case(5):
+			lastDirection = "south-west";
+			allParticles.push(new Particle(posX -= step, posY -= step, maxLevel));
+			console.log("direction " + lastDirection + " posX " + posX + " posY " + posY);
+			break;
+		case(6):
+			lastDirection = "west";
+			allParticles.push(new Particle(posX -= step, posY, maxLevel));
+			console.log("direction " + lastDirection + " posX " + posX + " posY " + posY);
+			break;
+		case(7):
+			lastDirection = "north-west";
+			allParticles.push(new Particle(posX -= step, posY += step, maxLevel));
+			console.log("direction " + lastDirection + " posX " + posX + " posY " + posY);
+			break;
+	}
+}
+
 function chooseDirection() {
 	var _rand = Math.floor(Math.random() * Math.floor(7))
 	
-	switch(_rand) {
-		case(0):
-			// lastDirection = "north";
-			allParticles.push(new Particle(posX, posY += step, maxLevel));
-			break;
-		case(1):
-			// lastDirection = "north-east";
-			allParticles.push(new Particle(posX += step, posY += step, maxLevel));
-			break;
-		case(2):
-			// lastDirection = "east";
-			allParticles.push(new Particle(posX += step, posY, maxLevel));
-			break;
-		case(3):
-			// lastDirection = "south-east";
-			allParticles.push(new Particle(posX += step, posY -= step, maxLevel));
-			break;
-		case(4):
-			// lastDirection = "south";
-			allParticles.push(new Particle(posX, posY -= step, maxLevel));
-			break;
-		case(5):
-			// lastDirection = "south-west";
-			allParticles.push(new Particle(posX -= step, posY -= step, maxLevel));
-			break;
-		case(6):
-			// lastDirection = "west";
-			allParticles.push(new Particle(posX -= step, posY, maxLevel));
-			break;
-		case(7):
-			// lastDirection = "north-west";
-			allParticles.push(new Particle(posX -= step, posY += step, maxLevel));
-			break;
+	var cantGoNorth	= (posY - step) <= 0,
+		cantGoEast	= (posX + step) >= window.innerWidth,
+		cantGoWest	= (posX - step) <= 0,
+		cantGoSouth	= (posY + step) >= window.innerHeight
+		
+	console.log(cantGoNorth, cantGoEast, cantGoWest, cantGoSouth);
+	
+	var x = 2
+	
+	if(cantGoNorth) {
+		posY = window.innerHeight - (step * x);
 	}
+	else if(cantGoEast) {
+		posX = 0 + (step * x);
+	}
+	else if(cantGoSouth) {
+		posY = 0 + (step * x);
+	}
+	else if(cantGoWest) {
+		posX = window.innerWidth - (step * x);
+	}
+	
+	move(_rand);
 }
 
 setInterval(function() {
@@ -238,7 +277,8 @@ setInterval(function() {
 	
 	if(stepAllowance > 0) {
 		chooseDirection();
-		stepAllowance--;
+		// stepAllowance--;
 	}
+
 	
 }, 100)
