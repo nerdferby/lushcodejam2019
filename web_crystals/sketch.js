@@ -233,7 +233,7 @@ function chooseDirection() {
 		
 	console.log(cantGoNorth, cantGoEast, cantGoWest, cantGoSouth);
 	
-	var x = 2
+	var x = 1
 	
 	if(cantGoNorth) {
 		posY = window.innerHeight - (step * x);
