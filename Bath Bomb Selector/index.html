@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>P5.js Test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="p5.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#img3").click(function(){
+                $("#foo").fadeOut("slow", function(){
+                    window.location.replace("animation.html");
+                    /*setTimeout(function(){
+                        $("#foo").fadeOut("slow", function(){
+                            window.location.replace("marshmellow.html");
+                        });
+                    }, 5000);*/
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="foo" class="container">
+        <h1>LUSH Bath Bomb Selector</h1>
+        <img src="/images/harajuku.jpg" alt="Bath bomb" height="300" width="300" onClick="">
+        <img src="/images/honey-i-washed.jpg" alt="Bath bomb" height="300" width="300">
+        <img src="/images/marshmellow.jpg" alt="Bath bomb" height="300" width="300" id="img3">     
+    </div>
+</body>
+</html>
+
