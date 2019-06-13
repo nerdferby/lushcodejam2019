@@ -13,8 +13,10 @@
                 $("#animation").css("opacity", "1")
                 $(".wrapper").fadeOut(1000, function(){
                     setTimeout(function(){
-                        $("#animation").css("opacity", "0"); 	
-                        prepareFrame("harajuku", "/html/harajuku.html");   
+                        $("#animation").css("opacity", "0");
+                        setTimeout(function(){
+                            prepareFrame("harajuku", "/html/harajuku.html");    
+                        }, 1000);
                     }, 3000);
                 });
             });
@@ -22,8 +24,10 @@
                 $("#animation").css("opacity", "1")
                 $(".wrapper").fadeOut(1000, function(){
                     setTimeout(function(){
-                        $("#animation").css("opacity", "0"); 	
-                        prepareFrame("honey-i-washed", "/html/honey-i-washed.html");   
+                        $("#animation").css("opacity", "0");
+                        setTimeout(function(){
+                            prepareFrame("honey-i-washed", "/html/honey-i-washed.html")
+                        }, 1000);   
                     }, 3000);
                 });
             });

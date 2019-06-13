@@ -2,9 +2,9 @@ var circles = []
 var total = 100
 var img;
 function setup() {
-	createCanvas(830, 590);
+	createCanvas(810, 366);
 	
-	loadImage('/images/sweet-shop.jpg', function(img2) {
+	loadImage('/images/honeycomb.jpg', function(img2) {
 	    background(30)
         img = img2
 
