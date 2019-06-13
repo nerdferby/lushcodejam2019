@@ -26,6 +26,8 @@ var data = [];
 
 var lastChime = 0; // milliseconds
 var chimeCooldown = 100;
+var colours = [217, 34];
+var colour = colours[0];
 
 var lastChimeLoop = setInterval(function() {
 	lastChime = lastChime > 0 ? lastChime - chimeCooldown : 0;
@@ -136,13 +138,8 @@ function draw() {
       }
       
       // Base its hue by the particle's life.
-      if (useFill) {
         noStroke();
-        fill(165+p1.life*1.5, 360, 360);
-      } else {
-        noFill();
-        stroke(165+p1.life*1.5, 360, 360);
-      }
+        fill(colour+p1.life*1.5, 360, 360);
       
       triangle(p1.pos.x, p1.pos.y, 
                p2.pos.x, p2.pos.y, 
@@ -156,7 +153,7 @@ function draw() {
   
   noStroke();
   fill(255);
-  text("Click and drag the mouse\nPress any key to change to fill/stroke", width/2, height-50);
+  // text("Click and drag the mouse\nPress any key to change to fill/stroke", width/2, height-50);
 }
 
 // function mouseDragged() {
