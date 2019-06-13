@@ -1,6 +1,10 @@
 var circles = []
 var total = 100
 var img;
+
+//Array to hold file names of different images
+//var random_images_array = ["honeycomb.jpg", "sweet-shop.jpg", "washing-line.jpg"];
+
 function setup() {
 	createCanvas(830, 600);
 	
@@ -45,3 +49,13 @@ function draw() {
 		circle.prevPos.y = circle.pos.y
 	}
 }
+
+//Function to choose a random image from the array and return a string with the path to the file
+
+/*function randomImage(imgAr, path) {
+	path = path || '/images/'; // default path here
+    var num = Math.floor( Math.random() * imgAr.length );
+    var img = imgAr[ num ];
+    var imgStr = path + img;
+    return imgStr;
+}*/
