@@ -157,13 +157,8 @@ function draw() {
 	  }
       
       // Base its hue by the particle's life.
-      if (useFill) {
-        noStroke();
-        fill(colour+p1.life*1.5, 360, 360);
-      } else {
-        noFill();
-        stroke(colour+p1.life*1.5, 360, 360);
-      }
+	  noStroke();
+	  fill(colour+p1.life*1.5, 360, 360);
       
       triangle(p1.pos.x, p1.pos.y, 
                p2.pos.x, p2.pos.y, 
@@ -176,19 +171,74 @@ function draw() {
   
   noStroke();
   fill(255);
-  text("Click and drag the mouse\nPress any key to change to fill/stroke", width/2, height-50);
+  // text("Click and drag the mouse\nPress F key to change colour", width/2, height-50);
 }
 
 
-function mouseDragged() {
-  allParticles.push(new Particle(mouseX, mouseY, maxLevel));
-}
+// function mouseDragged() {
+  // allParticles.push(new Particle(mouseX, mouseY, maxLevel));
+// }
 
 function mouseClicked() {
 	colour = colours[Math.floor(Math.random() * Math.floor(colours.length))];
 }
 
+/*
+ *	Generates the pattern the crystals are formed
+*/
+var step = 35; // pixels
+var stepAllowance = 100;
+var lastDirection = 0;
+var posX = window.innerWidth / 2;
+var posY = window.innerHeight / 2;
 
-function keyPressed() {
-  useFill = ! useFill;
+function chooseDirection() {
+	var _rand = Math.floor(Math.random() * Math.floor(7))
+	
+	switch(_rand) {
+		case(0):
+			// lastDirection = "north";
+			allParticles.push(new Particle(posX, posY += step, maxLevel));
+			break;
+		case(1):
+			// lastDirection = "north-east";
+			allParticles.push(new Particle(posX += step, posY += step, maxLevel));
+			break;
+		case(2):
+			// lastDirection = "east";
+			allParticles.push(new Particle(posX += step, posY, maxLevel));
+			break;
+		case(3):
+			// lastDirection = "south-east";
+			allParticles.push(new Particle(posX += step, posY -= step, maxLevel));
+			break;
+		case(4):
+			// lastDirection = "south";
+			allParticles.push(new Particle(posX, posY -= step, maxLevel));
+			break;
+		case(5):
+			// lastDirection = "south-west";
+			allParticles.push(new Particle(posX -= step, posY -= step, maxLevel));
+			break;
+		case(6):
+			// lastDirection = "west";
+			allParticles.push(new Particle(posX -= step, posY, maxLevel));
+			break;
+		case(7):
+			// lastDirection = "north-west";
+			allParticles.push(new Particle(posX -= step, posY += step, maxLevel));
+			break;
+	}
 }
+
+setInterval(function() {
+	
+	centerY = window.innerHeight / 2;
+	centerX = window.innerWidth / 2;
+	
+	if(stepAllowance > 0) {
+		chooseDirection();
+		stepAllowance--;
+	}
+	
+}, 100)
