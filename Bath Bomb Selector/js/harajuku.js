@@ -2,11 +2,11 @@ var circles = []
 var total = 100
 var img;
 function setup() {
-	createCanvas(600, 600);
+	createCanvas(852, 480);
 	
-	loadImage('/images/sweet-shop.jpg', function(img2) {
-	  background(30)
-    img = img2
+	loadImage('/images/washing-line.jpg', function(img2) {
+	  	background(30)
+    	img = img2
 
 		for(var i = 0; i < total; i++){
 			circles[i] = {};
@@ -16,7 +16,7 @@ function setup() {
 			circles[i].radius = random(3, 10)
 			circles[i].angle = 0
 		}
-  });
+  	});
 }
 
 function draw() {
@@ -44,4 +44,8 @@ function draw() {
 		circle.prevPos.x = circle.pos.x
 		circle.prevPos.y = circle.pos.y
 	}
+}
+
+function windowResized() {
+	resizeCanvas(windowWidth, windowHeight);
 }

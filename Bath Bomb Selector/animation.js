@@ -9,7 +9,7 @@ function setup() {
 
 function draw() 
 {
-	offset+=0.02;
+	offset+=0.05;
 	for(let i = 0; i<density; i++)
 	{
 		for(let j = 0; j<density; j++)

@@ -13,9 +13,6 @@ Inspired by:
 
 Author:
   Jason Labbe
-  
-Modified by:
-  Scott Cummins
 
 Site:
   jasonlabbe3d.com
@@ -25,22 +22,9 @@ var allParticles = [];
 var maxLevel = 5;
 var useFill = false;
 
-var colours = [318, 29];
-var colour = 318;
-
-var chimes = [
-	// "sounds/chime_bell -6.mp3",
-	"sounds/chime_bell -3.mp3",
-	"sounds/chime_bell 0.mp3",
-	"sounds/chime_bell 3.mp3",
-	"sounds/chime_bell 6.mp3",
-	// "sounds/chime_bell -10.mp3",
-	// "sounds/chime_bell 0.mp3",
-	"sounds/chime_bell 10.mp3"
-];
-
 var data = [];
 
+<<<<<<< HEAD
 var lastChime = 0; // milliseconds
 var chimeCooldown = 100;
 
@@ -64,6 +48,8 @@ function playChime(sound_id) {
 	}
 	
 }
+=======
+>>>>>>> e1763ec26bfdbdb8f047be733e88a6a16bba7755
 
 // Moves to a random direction and comes to a stop.
 // Spawns other particles within its lifetime.
@@ -151,30 +137,35 @@ function draw() {
       if (dist(p1.pos.x, p1.pos.y, p3.pos.x, p3.pos.y) > distThresh) {
         continue;
       }
-	  
-	  function getRandomColour() {
-		  return colours[Math.floor(Math.random() * Math.floor(colours.length))];
-	  }
       
       // Base its hue by the particle's life.
-	  noStroke();
-	  fill(colour+p1.life*1.5, 360, 360);
+      if (useFill) {
+        noStroke();
+        fill(165+p1.life*1.5, 360, 360);
+      } else {
+        noFill();
+        stroke(165+p1.life*1.5, 360, 360);
+      }
       
       triangle(p1.pos.x, p1.pos.y, 
                p2.pos.x, p2.pos.y, 
                p3.pos.x, p3.pos.y);
+<<<<<<< HEAD
 	  
 	  _rand = Math.floor(Math.random() * Math.floor(3));
 	  // playChime(_rand)
+=======
+>>>>>>> e1763ec26bfdbdb8f047be733e88a6a16bba7755
     }
   }
   
   noStroke();
   fill(255);
-  // text("Click and drag the mouse\nPress F key to change colour", width/2, height-50);
+  text("Click and drag the mouse\nPress any key to change to fill/stroke", width/2, height-50);
 }
 
 
+<<<<<<< HEAD
 // function mouseDragged() {
   // allParticles.push(new Particle(mouseX, mouseY, maxLevel));
 // }
@@ -282,3 +273,13 @@ setInterval(function() {
 
 	
 }, 100)
+=======
+function mouseDragged() {
+  allParticles.push(new Particle(mouseX, mouseY, maxLevel));
+}
+
+
+function keyPressed() {
+  useFill = ! useFill;
+}
+>>>>>>> e1763ec26bfdbdb8f047be733e88a6a16bba7755
